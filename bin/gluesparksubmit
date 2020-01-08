@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker run -it --rm -v "$(pwd)":/project sysmana/aws-glue-dev-spark-submit:0.9
+docker run -it --rm -v "$(pwd)":/project sysmana/aws-glue-dev-spark-submit:0.9 "$@"

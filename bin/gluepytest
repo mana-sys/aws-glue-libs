@@ -1,5 +1,2 @@
 #!/usr/bin/env bash
-
-ROOT_DIR="$(cd $(dirname "$0")/..; pwd)"
-source $ROOT_DIR/bin/glue-setup.sh
-exec pytest "$@"
+docker run -it --rm -v "$(pwd)":/project sysmana/aws-glue-dev-gluepytest:0.9 "$@"
