@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-ENTRYPOINT="python -m pytest"
-docker run --rm -v "$(pwd)":/project -v aws_glue_dist_packages:/usr/local/lib/python2.7/dist-packages --entrypoint "$ENTRYPOINT" sysmana/aws-glue-dev-base:0.9 "$@"
+docker run --rm -v "$(pwd)":/project -v aws_glue_dist_packages:/usr/local/lib/python2.7/dist-packages --entrypoint python sysmana/aws-glue-dev-base:0.9 -m pytest "$@"
