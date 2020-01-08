@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-ENTRYPOINT=/usr/local/spark-2.2.1-bin-hadoop2.7/bin/spark-submit
+ENTRYPOINT=pip
 docker run --rm -v "$(pwd)":/project -v aws_glue_dist_packages:/usr/local/lib/python2.7/dist-packages --entrypoint $ENTRYPOINT sysmana/aws-glue-dev-base:0.9 "$@"
