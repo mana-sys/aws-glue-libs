@@ -2,7 +2,7 @@ PREFIX = /usr/local
 .PHONY: install
 install:
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp bin/glue* $(PREFIX)/bin/
+	cp bin/glue* $(DESTDIR)$(PREFIX)/bin/
 
 .PHONY: uninstall
 uninstall:
