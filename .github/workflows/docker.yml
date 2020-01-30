@@ -20,23 +20,23 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: docker push $DOCKER_USERNAME/sparkui:latest
-#  build-aws-glue-dev-base:
-#    name: Build
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Docker Registry
-#        env:
-#          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-#          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-#        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-#      - name: Checkout
-#        uses: actions/checkout@v2
-#      - name: Build
-#        env:
-#          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-#        run: docker build -t $DOCKER_USERNAME/aws-glue-dev-base:0.9 -f docker/aws-glue-dev-base/0.9/Dockerfile .
-#      - name: Push to Docker Registry
-#        env:
-#          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-#        run: docker push $DOCKER_USERNAME/aws-glue-dev-base:0.9
+  build-aws-glue-dev-base:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker Registry
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker build -t $DOCKER_USERNAME/aws-glue-dev-base:0.9 -f docker/aws-glue-dev-base/0.9/Dockerfile .
+      - name: Push to Docker Registry
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker push $DOCKER_USERNAME/aws-glue-dev-base:0.9
 
