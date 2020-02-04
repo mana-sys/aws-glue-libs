@@ -26,12 +26,13 @@ RUN mkdir $GLUE_LIBS_ROOT/dist/ &&\
     zip -r dist/awsglue.zip awsglue/
 
 # Set up PYTHONPATH and PATH
-ENV PYTHONPATH $GLUE_LIBS_ROOT/dist/awsglue.zip:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$SPARK_HOME/python/:$PYTHONPATH
+ENV PYTHONPATH $GLUE_LIBS_ROOT/dist/awsglue.zip:$SPARK_HOME/python/lib/py4j-*-src.zip:$SPARK_HOME/python/:$PYTHONPATH
 ENV PATH $SPARK_HOME/bin:$PATH
 
 # Spark configuration for adding Glue libraries to class path.
 RUN echo "spark.driver.extraClassPath $GLUE_LIBS_ROOT/jars/*" >> $SPARK_HOME/conf/spark-defaults.conf &&\
-    echo "spark.executor.extraClassPath $GLUE_LIBS_ROOT/jars/*" >> $SPARK_HOME/conf/spark-defaults.conf
+    echo "spark.executor.extraClassPath $GLUE_LIBS_ROOT/jars/*" >> $SPARK_HOME/conf/spark-defaults.conf &&\
+    echo "spark.hadoop.fs.s3a.aws.credentials.provider com.amazonaws.auth.DefaultAWSCredentialsProviderChain" >> $SPARK_HOME/conf/spark-defaults.conf
 
 WORKDIR /project
 
