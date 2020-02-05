@@ -18,7 +18,12 @@ ENV GLUE_LIBS_ROOT /aws-glue-libs
 # Retrieve dependency JARs for AWS Glue libraries.
 ADD pom.xml $GLUE_LIBS_ROOT/
 ADD awsglue $GLUE_LIBS_ROOT/awsglue
-RUN mvn -f $GLUE_LIBS_ROOT/pom.xml -DoutputDirectory=$GLUE_LIBS_ROOT/jars dependency:copy-dependencies
+RUN mvn -f $GLUE_LIBS_ROOT/pom.xml -DoutputDirectory=$GLUE_LIBS_ROOT/jars dependency:copy-dependencies && \
+    # https://github.com/awslabs/aws-glue-libs/issues/25#issuecomment-575215616
+    rm ${GLUE_LIBS_ROOT}/jars/netty-3.6.2.Final.jar && \
+    rm ${GLUE_LIBS_ROOT}/jars/netty-all-4.0.23.Final.jar
+
+
 
 # Set up AWS Glue Python package.
 RUN mkdir $GLUE_LIBS_ROOT/dist/ &&\
