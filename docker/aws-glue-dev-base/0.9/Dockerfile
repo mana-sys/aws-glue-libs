@@ -11,7 +11,7 @@ RUN curl -O https://aws-glue-etl-artifacts.s3.amazonaws.com/glue-0.9/spark-2.2.1
 
 ENV SPARK_HOME /usr/local/spark-2.2.1-bin-hadoop2.7
 
-RUN pip install pytest
+RUN pip install boto3 pytest
 
 ENV GLUE_LIBS_ROOT /aws-glue-libs
 
